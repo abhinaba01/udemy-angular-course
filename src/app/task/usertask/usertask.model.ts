@@ -5,3 +5,9 @@ export type Task={
     summary: string;
     dueDate: string;
   }
+
+  export type Form = {
+    title:string; 
+    summary:string; 
+    date:string
+  }
