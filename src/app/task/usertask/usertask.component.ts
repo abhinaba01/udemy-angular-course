@@ -1,0 +1,24 @@
+import { Component ,EventEmitter,Input,Output} from '@angular/core';
+import { Task } from './usertask.model';
+
+@Component({
+  selector: 'app-usertask',
+  standalone: true,
+  imports: [],
+  templateUrl: './usertask.component.html',
+  styleUrl: './usertask.component.css'
+})
+
+
+export class UsertaskComponent {
+
+
+  @Input({required:true}) task!: Task;
+  @Output() complete = new EventEmitter<string>();
+
+  onComplete(){
+    this.complete.emit(this.task.id);
+  }
+  
+}
+
