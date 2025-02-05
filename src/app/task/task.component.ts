@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input ,Output} from '@angular/core';
 import { UsertaskComponent } from "./usertask/usertask.component";
 import { TASKS_LIST } from './tasks';
-import { Task } from './usertask/usertask.model';
+import { Task ,Form} from './usertask/usertask.model';
 import { NewTaskComponent } from './new-task/new-task.component';
+import { TaskService } from './task.service';
 
 
 @Component({
@@ -17,6 +18,11 @@ export class TaskComponent {
   @Input() name?: string | undefined;
   @Input({required:true}) id!: string;
   @Output() newTask= new EventEmitter();
+
+  constructor(private taskService:TaskService){
+
+  }
+
   isAddingTask=false;
 
   onCompleteTask(id:string){
@@ -24,8 +30,6 @@ export class TaskComponent {
 
   }
   get selectedUserTasks(){
-    console.log(this.Tasks.filter((task)=> task.userId===this.id));
-  
     return this.Tasks.filter((task)=> task.userId===this.id);
   }
 
@@ -33,9 +37,21 @@ export class TaskComponent {
     this.isAddingTask=true;
   }
 
-  
-  
-    
-    
+  onCancelTask(){
+    this.isAddingTask=false;
   }
+
+  onAddTask(form:Form)
+  {
+    this.Tasks.push({
+      id: new Date().getTime().toString(),
+      userId:this.id,
+      title:form.title,
+      summary:form.summary,
+      dueDate:form.date
+    })
+    this.isAddingTask=false
+  }
+
+}
 
