@@ -1,26 +1,20 @@
-import { Component ,EventEmitter,Input,Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from './usertask.model';
 import { CardComponent } from '../../shared/card/card.component';
 import { DatePipe } from '@angular/common';
 
-
 @Component({
   selector: 'app-usertask',
   standalone: true,
-  imports: [CardComponent,DatePipe],
+  imports: [CardComponent, DatePipe],
   templateUrl: './usertask.component.html',
-  styleUrl: './usertask.component.css'
+  styleUrl: './usertask.component.css',
 })
-
 export class UsertaskComponent {
-
-
-  @Input({required:true}) task!: Task;
+  @Input({ required: true }) task!: Task;
   @Output() complete = new EventEmitter<string>();
 
-  onComplete(){
+  onComplete() {
     this.complete.emit(this.task.id);
   }
-  
 }
-

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from './header/header.component';
 import { UserComponent } from "./user/user.component";
-import { USERS } from './dummy-users';
+import { USERS } from './users';
 import { TaskComponent } from './task/task.component';
 
 @Component({
