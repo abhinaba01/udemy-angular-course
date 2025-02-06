@@ -5,8 +5,6 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-usertask',
-  standalone: true,
-  imports: [CardComponent, DatePipe],
   templateUrl: './usertask.component.html',
   styleUrl: './usertask.component.css',
 })
