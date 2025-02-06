@@ -2,18 +2,7 @@ import { Injectable } from '@angular/core';
 import { Form } from './usertask/usertask.model';
 
 @Injectable({ providedIn: 'root' })
-
-
 export class TaskService {
-
-  constructor(){
-   
-    const Tasks= localStorage.getItem('Tasks');
-    if(Tasks){
-      this.Tasks=JSON.parse(Tasks);
-    }
-  
-  }
   private Tasks = [
     {
       id: 't1',
@@ -48,6 +37,17 @@ export class TaskService {
     },
   ];
 
+  constructor() {
+    const Tasks = localStorage.getItem('Tasks');
+    if (Tasks) {
+      this.Tasks = JSON.parse(Tasks);
+    }
+  }
+
+  private saveTasks() {
+    localStorage.setItem('Tasks', JSON.stringify(this.Tasks));
+  }
+
   getUserTasks(userId: string) {
     return this.Tasks.filter((tasks) => tasks.userId === userId);
   }
@@ -66,9 +66,5 @@ export class TaskService {
   removeTask(id: string) {
     this.Tasks = this.Tasks.filter((task) => task.id !== id);
     this.saveTasks();
-  }
-
-  private saveTasks(){
-    localStorage.setItem('Tasks',JSON.stringify(this.Tasks));
   }
 }
